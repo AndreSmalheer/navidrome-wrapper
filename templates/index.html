@@ -4,17 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Navidrome Audio Test</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
   </head>
-  <link rel="stylesheet" href="styles.css" />
   <body>
     <div id="song_cards_container"></div>
 
-    <script src="config.js"></script>
-
-    <script src="main.js"></script>
-
-    <script>
-      //const src_url = `${navidrome_url}/rest/stream?u=${user}&p=${pass}&v=1.16.1&c=${client}&id=${song_id}`;
-    </script>
+    <script src="{{ url_for('static', filename='config.js') }}"></script>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
   </body>
 </html>
