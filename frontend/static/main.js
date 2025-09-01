@@ -22,6 +22,10 @@ async function listAllSongs(album_id) {
   });
 }
 
+function playSong(url) {
+  console.log("Playing song:", url);
+}
+
 function addSongToDaw(song) {
   const container = document.getElementById("song_cards_container");
 
@@ -40,15 +44,16 @@ function addSongToDaw(song) {
     <p class="song_play_count">Play Count: ${song.playCount}</p>
     <p class="song_created">Created: ${song.created}</p>
     <p class="song_last_played">Last Played: ${song.lastPlayed}</p>
-    <p class="song_url"><a href="${src_url}" target="_blank">Play Song</a></p>
-  `;
+    <p class="song_url">
+      <button onclick="playSong('${src_url}')">Play Song</button>
+    </p>
+    `;
 
   container.appendChild(songCard);
 }
 
 async function main() {
   await listAllSongs("json&id=69IwB2p7tQDejD3lowUIFo");
-  console.log(songsArray);
 
   songsArray.forEach((song) => {
     addSongToDaw(song);
