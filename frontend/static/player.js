@@ -1,4 +1,5 @@
 let queue = [];
+let queue_poistion = 0;
 
 function toggle_audio() {
   const player = document.getElementById("player-audio");
@@ -13,8 +14,9 @@ function toggle_audio() {
 }
 
 function handle_song_end() {
-  console.log("Song ended");
   playing = false;
+
+  audio = document.getElementById("player-audio");
 
   progress = document.getElementById("audio-progress");
 
@@ -22,15 +24,13 @@ function handle_song_end() {
     progress.value = 0;
   }
 
-  if (queue.length >= 1) {
+  if (queue.length > queue_poistion) {
     // basic que implementation
-    //to do add more song info to the queue
-    console.log("song in queue", queue[0]);
+    queue_poistion += 1;
 
-    playSong(queue[0]);
-    queue.shift();
+    url = queue[queue_poistion - 1];
 
-    console.log(queue);
+    playSong(url);
   }
 }
 

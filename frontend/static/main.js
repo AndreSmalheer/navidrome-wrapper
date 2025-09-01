@@ -48,7 +48,12 @@ function playSong(url) {
     });
 
     audo.addEventListener("timeupdate", () => {
-      progress.value = (audo.currentTime / audo.duration) * 100;
+      if (audo.duration > 0) {
+        // make sure duration is valid
+        progress.value = (audo.currentTime / audo.duration) * 100;
+      } else {
+        progress.value = 0;
+      }
     });
   }
 
@@ -66,11 +71,26 @@ function playSong(url) {
     // add controls
     let player = document.getElementById("global-play-btn");
     if (!player) {
-      play = document.createElement("button");
+      // Previous button
+      let prev = document.createElement("button");
+      prev.textContent = "Previous";
+      prev.id = "global-prev-btn";
+      prev.onclick = handle_prev_button;
+      document.body.appendChild(prev);
+
+      // Play/Pause button
+      let play = document.createElement("button");
       play.textContent = "Play/Pause";
       play.id = "global-play-btn";
       play.onclick = toggle_audio;
       document.body.appendChild(play);
+
+      // Next button
+      let next = document.createElement("button");
+      next.textContent = "Next";
+      next.id = "global-next-btn";
+      next.onclick = handle_next_button;
+      document.body.appendChild(next);
     }
   } else {
     add_to_queue(url);
@@ -101,6 +121,35 @@ function addSongToDaw(song) {
     `;
 
   container.appendChild(songCard);
+}
+
+function handle_prev_button() {}
+
+function handle_next_button() {
+  if (queue.length > queue_poistion) {
+    queue_poistion += 1;
+
+    let url = queue[queue_poistion - 1]; // next song
+    console.log(url);
+    let audio = document.getElementById("player-audio");
+
+    if (audio) {
+      audio.pause();
+      audio.currentTime = 0; // reset position
+      console.log("Stopped current audio");
+    } else {
+      console.log("Audio element not found!");
+      return;
+    }
+
+    if (url) {
+      audio.src = url;
+      audio.play();
+      console.log("Playing next song:", url);
+    }
+  } else {
+    console.log("No more songs in queue");
+  }
 }
 
 async function main() {
