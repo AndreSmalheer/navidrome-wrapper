@@ -23,33 +23,51 @@ async function listAllSongs(album_id) {
 }
 
 function playSong(url) {
-  if (playing != true) {
+  if (!playing) {
     audo = document.createElement("audio");
     audo.src = url;
     audo.id = "player-audio";
     audo.autoplay = true;
     audo.hidden = true;
-
     document.body.appendChild(audo);
+
+    // create progress bar
+    let progress = document.getElementById("audio-progress");
+    if (!progress) {
+      progress = document.createElement("progress");
+      progress.id = "audio-progress";
+      progress.max = 100;
+      progress.value = 0;
+      progress.style.width = "300px";
+      progress.style.display = "block";
+      progress.style.margin = "10px 0";
+      document.body.appendChild(progress);
+    }
+
+    progress.addEventListener("click", (e) => {
+      const rect = progress.getBoundingClientRect();
+      const percent = (e.clientX - rect.left) / rect.width;
+      audo.currentTime = percent * audo.duration;
+    });
+
+    // update progress as the song plays
+    audo.addEventListener("timeupdate", () => {
+      progress.value = (audo.currentTime / audo.duration) * 100;
+    });
 
     playing = true;
 
     // add controls
-    player = document.getElementById("global-play-btn");
-
-    if (player == null) {
+    let player = document.getElementById("global-play-btn");
+    if (!player) {
       play = document.createElement("button");
-
-      play.textContent = "Play/pauze";
-
+      play.textContent = "Play/Pause";
       play.id = "global-play-btn";
-
       play.onclick = toggle_audio;
-
       document.body.appendChild(play);
     }
   } else {
-    console.log("already playing somting");
+    console.log("already playing something");
   }
 }
 
