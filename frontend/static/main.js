@@ -1,4 +1,4 @@
-const songsArray = []; //array used to store all the songs lssited from navidrome server
+const songsArray = []; //array used to store all the songs listed from navidrome server
 let playing = false; // boolean to keep track of playing songs
 
 async function listAllSongs(album_id) {
@@ -23,15 +23,7 @@ async function listAllSongs(album_id) {
 }
 
 function playSong(url) {
-  if (!playing) {
-    audo = document.createElement("audio");
-    audo.src = url;
-    audo.id = "player-audio";
-    audo.autoplay = true;
-    audo.hidden = true;
-    document.body.appendChild(audo);
-
-    // create progress bar
+  function create_progress_bar(container) {
     let progress = document.getElementById("audio-progress");
     if (!progress) {
       progress = document.createElement("progress");
@@ -41,7 +33,7 @@ function playSong(url) {
       progress.style.width = "300px";
       progress.style.display = "block";
       progress.style.margin = "10px 0";
-      document.body.appendChild(progress);
+      container.appendChild(progress); // ← use the argument, not document.div
     }
 
     progress.addEventListener("click", (e) => {
@@ -50,12 +42,26 @@ function playSong(url) {
       audo.currentTime = percent * audo.duration;
     });
 
-    // update progress as the song plays
+    // Run a function when the song ends
+    audo.addEventListener("ended", () => {
+      handle_song_end();
+    });
+
     audo.addEventListener("timeupdate", () => {
       progress.value = (audo.currentTime / audo.duration) * 100;
     });
+  }
 
+  if (!playing) {
+    audo = document.createElement("audio");
+    audo.src = url;
+    audo.id = "player-audio";
+    audo.autoplay = true;
+    audo.hidden = true;
+    document.body.appendChild(audo);
     playing = true;
+
+    create_progress_bar(document.body);
 
     // add controls
     let player = document.getElementById("global-play-btn");
@@ -67,7 +73,7 @@ function playSong(url) {
       document.body.appendChild(play);
     }
   } else {
-    console.log("already playing something");
+    add_to_queue(url);
   }
 }
 
