@@ -1,5 +1,5 @@
-const songsArray = [];
-const client = "My app";
+const songsArray = []; //array used to store all the songs lssited from navidrome server
+let playing = false; // boolean to keep track of playing songs
 
 async function listAllSongs(album_id) {
   const url = `${navidrome_url}/rest/getMusicDirectory?u=${user}&p=${pass}&v=1.16.1&c=${client}&f=${album_id}`;
@@ -23,7 +23,34 @@ async function listAllSongs(album_id) {
 }
 
 function playSong(url) {
-  console.log("Playing song:", url);
+  if (playing != true) {
+    audo = document.createElement("audio");
+    audo.src = url;
+    audo.id = "player-audio";
+    audo.autoplay = true;
+    audo.hidden = true;
+
+    document.body.appendChild(audo);
+
+    playing = true;
+
+    // add controls
+    player = document.getElementById("global-play-btn");
+
+    if (player == null) {
+      play = document.createElement("button");
+
+      play.textContent = "Play/pauze";
+
+      play.id = "global-play-btn";
+
+      play.onclick = toggle_audio;
+
+      document.body.appendChild(play);
+    }
+  } else {
+    console.log("already playing somting");
+  }
 }
 
 function addSongToDaw(song) {
