@@ -39,7 +39,7 @@ function addSongToDaw(song) {
     <p class="song_created">Created: ${song.created}</p>
     <p class="song_last_played">Last Played: ${song.lastPlayed}</p>
     <p class="song_url">
-      <button onclick="playSong('${song.url}')">Play Song</button>
+      <button onclick='playSong(${JSON.stringify(song)})'>Play Song</button>
     </p>
     `;
 
