@@ -96,6 +96,9 @@ function play_prev_song() {
       audioPlayer.pause();
     }
 
+    document.getElementById("song-title").textContent = prev_song.title;
+    document.getElementById("song-artist").textContent = prev_song.artist;
+
     audioPlayer.src = prev_song.url;
     audioPlayer.play();
     audio_playing = true;
@@ -120,6 +123,7 @@ function play_next_song() {
   track_list_poistion += 1;
   next_song = track_list[track_list_poistion];
   audioPlayer = document.getElementById("player-audio");
+  console.log(next_song);
 
   if (next_song) {
     if (audio_playing === true) {
@@ -127,6 +131,9 @@ function play_next_song() {
       audio_playing = false;
       audioPlayer.pause();
     }
+
+    document.getElementById("song-title").textContent = next_song.title;
+    document.getElementById("song-artist").textContent = next_song.artist;
 
     audioPlayer.src = next_song.url;
     audioPlayer.play();
@@ -146,6 +153,9 @@ function playSong(song) {
       create_music_controls(url);
       audioPlayer = document.getElementById("player-audio");
     }
+
+    document.getElementById("song-title").textContent = song.title;
+    document.getElementById("song-artist").textContent = song.artist;
 
     audioPlayer.pause;
     audioPlayer.src = song.url;
