@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="top-bar">
+      <div id="prev-btn"></div>
+      <div id="settings-btn"><img src="images/settings 2.svg" /></div>
+    </div>
+
+    <div id="view">
+      <div id="audio-feed-large">
+        <div class="header">Recently Played</div>
+        <div class="song-feed">
+          <div class="song" onclick="album_details()"></div>
+          <div class="song" onclick="album_details()"></div>
+          <div class="song" onclick="album_details()"></div>
+          <div class="song" onclick="album_details()"></div>
+        </div>
+      </div>
+
+      <div id="audio-feed-medium">
+        <div class="header">Recently Played</div>
+        <div class="song-feed">
+          <div class="song" onclick="album_details()"></div>
+          <div class="song" onclick="album_details()"></div>
+          <div class="song" onclick="album_details()"></div>
+          <div class="song" onclick="album_details()"></div>
+        </div>
+      </div>
+
+      <div id="audio-feed-small">
+        <div class="header">Recently Played</div>
+        <div class="song-feed">
+          <div class="song" onclick="album_details()"></div>
+          <div class="song" onclick="album_details()"></div>
+          <div class="song" onclick="album_details()"></div>
+          <div class="song" onclick="album_details()"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="audio-player-view">
+      <div id="song-cover"></div>
+      <div id="song-header">Song Name</div>
+    </div>
+
+    <div id="side-bar">
+      <div class="side-bar-btn" id="home-btn">
+        <img src="images/house-chimney 1.svg" />
+      </div>
+      <div class="side-bar-btn" id="search-btn">
+        <img src="images/search 1.svg" />
+      </div>
+      <div class="side-bar-btn" id="fav-btn">
+        <img src="images/heart 1.svg" />
+      </div>
+      <div class="side-bar-btn" id="radio-btn">
+        <img src="images/radio 1.svg" />
+      </div>
+    </div>
+  </body>
+
+  <script>
+    function clear_view() {
+      document.getElementById("view").innerHTML = "";
+    }
+
+    function album_details() {
+      clear_view();
+    }
+  </script>
+</html>
