@@ -50,22 +50,70 @@
     </div>
 
     <div id="side-bar">
-      <div class="side-bar-btn" id="home-btn">
+      <div
+        class="side-bar-btn"
+        id="home-btn"
+        onclick="handle_side_bar_btn_click(this)"
+      >
         <img src="images/house-chimney 1.svg" />
       </div>
-      <div class="side-bar-btn" id="search-btn">
+
+      <div
+        class="side-bar-btn"
+        id="search-btn"
+        onclick="handle_side_bar_btn_click(this)"
+      >
         <img src="images/search 1.svg" />
       </div>
-      <div class="side-bar-btn" id="fav-btn">
+
+      <div
+        class="side-bar-btn"
+        id="fav-btn"
+        onclick="handle_side_bar_btn_click(this)"
+      >
         <img src="images/heart 1.svg" />
       </div>
-      <div class="side-bar-btn" id="radio-btn">
+
+      <div
+        class="side-bar-btn"
+        id="radio-btn"
+        onclick="handle_side_bar_btn_click(this)"
+      >
         <img src="images/radio 1.svg" />
       </div>
     </div>
   </body>
 
   <script>
+    let current_view = "home";
+
+    function handle_side_bar_btn_click(button) {
+      btn_id = button.id;
+
+      clear_view();
+      const buttonActions = {
+        "home-btn": () => console.log("clicked on home btn"),
+        "search-btn": () => console.log("clicked on settings btn"),
+        "fav-btn": () => console.log("clicked on profile btn"),
+        "radio-btn": () => console.log("clicked on radio btn"),
+      };
+
+      const buttonViews = {
+        "home-btn": "home",
+        "search-btn": "search",
+        "fav-btn": "favorites",
+        "radio-btn": "radio",
+      };
+
+      if (buttonActions[btn_id]) {
+        buttonActions[btn_id]();
+      }
+
+      if (buttonViews[btn_id]) {
+        current_view = buttonViews[btn_id];
+      }
+    }
+
     function clear_view() {
       document.getElementById("view").innerHTML = "";
     }
