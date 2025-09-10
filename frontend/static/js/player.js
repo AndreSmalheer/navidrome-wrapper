@@ -7,7 +7,7 @@ function updateMediaSession(song) {
     navigator.mediaSession.metadata = new MediaMetadata({
       title: song.title,
       artist: song.artist,
-      artwork: [{ src: "artwork.jpg", sizes: "96x96", type: "image/jpeg" }],
+      artwork: [{ src: song.coverArt, sizes: "96x96", type: "image/jpeg" }],
     });
 
     navigator.mediaSession.setActionHandler("play", () => audioPlayer.play());

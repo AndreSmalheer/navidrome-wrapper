@@ -17,6 +17,7 @@ async function listAllSongs(album_id) {
       playCount: song.playCount,
       created: song.created,
       lastPlayed: song.played,
+      coverArt: `${navidrome_url}/rest/getCoverArt?u=${user}&p=${pass}&v=1.16.1&c=${client}&id=${song.coverArt}`,
       url: `${navidrome_url}/rest/stream?u=${user}&p=${pass}&v=1.16.1&c=${client}&id=${song.id}`,
     });
   });
@@ -38,6 +39,7 @@ function addSongToDaw(song) {
     <p class="song_play_count">Play Count: ${song.playCount}</p>
     <p class="song_created">Created: ${song.created}</p>
     <p class="song_last_played">Last Played: ${song.lastPlayed}</p>
+    <img class="song_cover" src="${song.coverArt}" alt="Album cover">
     <p class="song_url">
       <button onclick='playSong(${JSON.stringify(song)})'>Play Song</button>
     </p>
