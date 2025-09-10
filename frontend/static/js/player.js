@@ -2,6 +2,19 @@ let audio_playing = false;
 let track_list = [];
 let track_list_poistion = 0;
 
+async function scrobbleSong(song, submission = false) {
+  const url =
+    `${navidrome_url}/rest/scrobble?` +
+    `u=${user}&p=${pass}&v=1.16.1&c=${client}` +
+    `&id=${song.id}&submission=${submission}`;
+
+  try {
+    await fetch(url);
+  } catch (err) {
+    console.error("Scrobble failed:", err);
+  }
+}
+
 function updateMediaSession(song) {
   if ("mediaSession" in navigator) {
     navigator.mediaSession.metadata = new MediaMetadata({
@@ -112,6 +125,12 @@ function create_music_controls(url) {
 function handle_song_end() {
   progress_bar = document.getElementById("audio-progress").value = 0;
   audio_playing = false;
+
+  const currentSong = track_list[track_list_poistion];
+  if (currentSong) {
+    scrobbleSong(currentSong, true);
+  }
+
   play_next_song();
 }
 
@@ -199,6 +218,7 @@ function playSong(song) {
     audio_playing = true;
 
     updateMediaSession(song);
+    scrobbleSong(song, false);
   } else {
     navigator.mediaSession.setActionHandler("nexttrack", () => {
       play_next_song();
