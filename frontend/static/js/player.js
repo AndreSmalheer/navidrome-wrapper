@@ -2,6 +2,37 @@ let audio_playing = false;
 let track_list = [];
 let track_list_poistion = 0;
 
+function updateMediaSession(song) {
+  if ("mediaSession" in navigator) {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: song.title,
+      artist: song.artist,
+      artwork: [{ src: "artwork.jpg", sizes: "96x96", type: "image/jpeg" }],
+    });
+
+    navigator.mediaSession.setActionHandler("play", () => audioPlayer.play());
+    navigator.mediaSession.setActionHandler("pause", () => audioPlayer.pause());
+
+    // Check if previous song exists
+    if (track_list_poistion > 0) {
+      navigator.mediaSession.setActionHandler("previoustrack", () => {
+        play_prev_song();
+      });
+    } else {
+      navigator.mediaSession.setActionHandler("previoustrack", null); // disables the button
+    }
+
+    // Check if next song exists
+    if (track_list_poistion < track_list.length - 1) {
+      navigator.mediaSession.setActionHandler("nexttrack", () => {
+        play_next_song();
+      });
+    } else {
+      navigator.mediaSession.setActionHandler("nexttrack", null); // disables the button
+    }
+  }
+}
+
 function create_music_controls(url) {
   // audio controller
   audioPlayer = document.createElement("audio");
@@ -102,6 +133,8 @@ function play_prev_song() {
     audioPlayer.src = prev_song.url;
     audioPlayer.play();
     audio_playing = true;
+
+    updateMediaSession(prev_song);
   } else {
     track_list_poistion += 1;
   }
@@ -138,6 +171,8 @@ function play_next_song() {
     audioPlayer.src = next_song.url;
     audioPlayer.play();
     audio_playing = true;
+
+    updateMediaSession(next_song);
   } else {
     track_list_poistion -= 1;
   }
@@ -157,10 +192,16 @@ function playSong(song) {
     document.getElementById("song-title").textContent = song.title;
     document.getElementById("song-artist").textContent = song.artist;
 
-    audioPlayer.pause;
+    audioPlayer.pause();
     audioPlayer.src = song.url;
-    audioPlayer.play;
+    audioPlayer.play();
 
     audio_playing = true;
+
+    updateMediaSession(song);
+  } else {
+    navigator.mediaSession.setActionHandler("nexttrack", () => {
+      play_next_song();
+    });
   }
 }
