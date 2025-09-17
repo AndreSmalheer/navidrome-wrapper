@@ -1,5 +1,174 @@
 @import url("https://fonts.googleapis.com/css2?family=Lilita+One&display=swap");
 
+@media (min-width: 451px) {
+  body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: #242323;
+  }
+  #side-bar {
+    background-color: #323232;
+    height: 100%;
+    width: 119px;
+    border-radius: 0 27px 27px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  #main-container {
+    width: calc(100% - 119px);
+    height: 100%;
+    padding-left: 1vw;
+  }
+
+  #top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 3vw;
+    padding-top: 1vh;
+  }
+
+  #audio-player-view {
+    height: clamp(200px, 80%, 318px);
+    width: clamp(30px, 3vh, 33px);
+    border-radius: 11px;
+    background-color: #3e3e3e;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 12px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  #audio-player-view #song-cover {
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    background-color: wheat;
+  }
+
+  #audio-player-view #song-header {
+    font-size: 10px;
+    padding-top: 15px;
+    color: #ffffff;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    letter-spacing: 0, 3em;
+  }
+
+  #view {
+    padding-left: calc(20px + clamp(3vw, 3vh, 33px));
+  }
+
+  #audio-feed-large {
+    height: 155px;
+    padding-bottom: 4vh;
+  }
+
+  #audio-feed-medium {
+    padding-bottom: 4vh;
+  }
+
+  #audio-feed-small {
+    height: 122px;
+    padding-bottom: 4vh;
+  }
+
+  #audio-feed-large .header,
+  #audio-feed-medium .header,
+  #audio-feed-small .header {
+    max-width: calc(100% - 2vh);
+    display: block;
+    margin-bottom: 1vh;
+    font-size: 20px;
+    color: #ffffff;
+    font-family: "Lilita One", sans-serif;
+  }
+
+  .song-feed {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 10px;
+    -ms-overflow-style: none;
+  }
+
+  #audio-feed-large .song-feed {
+    margin-left: 1vw;
+    display: flex;
+    gap: 10px;
+  }
+
+  #audio-feed-medium .song-feed {
+    margin-left: 1vw;
+    display: flex;
+    gap: 10px;
+  }
+
+  #audio-feed-small .song-feed {
+    margin-left: 1vw;
+    display: flex;
+    gap: 10px;
+  }
+
+  .song-feed .song {
+    border-radius: 11px;
+    flex: 0 0 auto;
+  }
+
+  .song {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    background-color: wheat;
+  }
+
+  #audio-feed-large .song-feed .song {
+    width: 140px;
+    height: 140px;
+  }
+
+  #audio-feed-medium .song-feed .song {
+    width: 130px;
+    height: 130px;
+  }
+
+  #audio-feed-small .song-feed .song {
+    width: 120px;
+    height: 120px;
+  }
+
+  #settings-btn {
+    display: inline-block; /* ensures transform works */
+  }
+
+  #settings-btn :hover {
+    cursor: pointer;
+    animation: spin 0.3s ease forwards;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .side-bar-btn:hover {
+    cursor: pointer;
+    scale: 1.1;
+  }
+}
+
 @media (max-width: 450px) {
   body {
     background-color: #242323;
@@ -9,7 +178,7 @@
   }
 
   #top-bar {
-    width: 100%;
+    /* width: 100%; */
     height: 8vh;
     display: flex;
     justify-content: space-between;
@@ -81,7 +250,6 @@
     overflow-x: auto;
     white-space: nowrap;
     padding-bottom: 5px;
-    scrollbar-width: none;
     -ms-overflow-style: none;
   }
 

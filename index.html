@@ -92,7 +92,7 @@
 
       clear_view();
       const buttonActions = {
-        "home-btn": () => console.log("clicked on home btn"),
+        "home-btn": () => home_view(),
         "search-btn": () => console.log("clicked on settings btn"),
         "fav-btn": () => console.log("clicked on profile btn"),
         "radio-btn": () => console.log("clicked on radio btn"),
@@ -114,6 +114,45 @@
       }
     }
 
+    function home_view() {
+      big_screen_conatiner = document.getElementById("main-container");
+
+      inner_html = `
+       <div id="audio-feed-large">
+         <div class="header">Recently Played</div>
+         <div class="song-feed">
+           <div class="song" onclick="album_details()"></div>
+           <div class="song" onclick="album_details()"></div>
+           <div class="song" onclick="album_details()"></div>
+           <div class="song" onclick="album_details()"></div>
+         </div>
+       </div>
+     
+       <div id="audio-feed-medium">
+         <div class="header">Recently Played</div>
+         <div class="song-feed">
+           <div class="song" onclick="album_details()"></div>
+           <div class="song" onclick="album_details()"></div>
+           <div class="song" onclick="album_details()"></div>
+           <div class="song" onclick="album_details()"></div>
+         </div>
+       </div>
+     
+       <div id="audio-feed-small">
+         <div class="header">Recently Played</div>
+         <div class="song-feed">
+           <div class="song" onclick="album_details()"></div>
+           <div class="song" onclick="album_details()"></div>
+           <div class="song" onclick="album_details()"></div>
+           <div class="song" onclick="album_details()"></div>
+         </div>
+       </div>`;
+
+      view_container = document.getElementById("view");
+
+      view_container.innerHTML = inner_html;
+    }
+
     function clear_view() {
       document.getElementById("view").innerHTML = "";
     }
@@ -121,5 +160,59 @@
     function album_details() {
       clear_view();
     }
+
+    function change_dom_order_big_screen() {
+      if (window.innerWidth >= 451) {
+        const body = document.body;
+
+        side_bar = document.getElementById("side-bar");
+        view = document.getElementById("view");
+        audio_player_view = document.getElementById("audio-player-view");
+        side_bar = document.getElementById("side-bar");
+        top_bar = document.getElementById("top-bar");
+
+        body.appendChild(side_bar);
+
+        container = document.getElementById("main-container");
+
+        if (container === null) {
+          container = document.createElement("div");
+          container.id = "main-container";
+        }
+
+        container.appendChild(top_bar);
+        container.append(audio_player_view);
+        container.append(view);
+
+        body.append(container);
+      }
+    }
+
+    function change_dom_order_small_screen() {
+      if (window.innerWidth <= 450) {
+        const body = document.body;
+
+        const side_bar = document.getElementById("side-bar");
+        const view = document.getElementById("view");
+        const audio_player_view = document.getElementById("audio-player-view");
+        const top_bar = document.getElementById("top-bar");
+        const container = document.getElementById("main-container");
+
+        if (container) {
+          body.appendChild(top_bar);
+          body.appendChild(view);
+          body.appendChild(audio_player_view);
+          body.appendChild(side_bar);
+
+          container.remove();
+        }
+      }
+    }
+
+    window.addEventListener("resize", change_dom_order_big_screen);
+    window.addEventListener("resize", change_dom_order_small_screen);
+
+    change_dom_order_big_screen();
+    change_dom_order_small_screen();
   </script>
 </html>
