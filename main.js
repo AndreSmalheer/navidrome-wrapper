@@ -72,7 +72,12 @@ function clear_view() {
   document.getElementById("view").innerHTML = "";
 }
 
-function album_details() {
+function album_details(album_id) {
+  if (album_id === undefined) {
+    return;
+  }
+
+  console.log("showing album for", album_id);
   clear_view();
 }
 
@@ -134,7 +139,7 @@ function populate_music_grid_single(song, parrent_container) {
     const song_container = document.createElement("div");
     song_container.className = "song";
     song_container.id = song["id"];
-    song_container.onclick = () => album_details();
+    song_container.onclick = () => album_details(song["id"]);
 
     song_img = document.createElement("img");
     song_img.className = "song_backround_img";
@@ -168,7 +173,7 @@ const song = {
   playCount: 42,
   created: "2020-03-20",
   lastPlayed: "2025-09-16",
-  coverArt: `url`,
+  coverArt: `https://d1csarkz8obe9u.cloudfront.net/posterpreviews/artistic-album-cover-design-template-d12ef0296af80b58363dc0deef077ecc_screen.jpg?ts=1735798846`,
   url: `url`,
 };
 
