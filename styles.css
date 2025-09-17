@@ -127,7 +127,6 @@
 
   .song {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-    background-color: wheat;
   }
 
   #audio-feed-large .song-feed .song {
@@ -166,6 +165,12 @@
   .side-bar-btn:hover {
     cursor: pointer;
     scale: 1.1;
+  }
+
+  .song_backround_img {
+    width: 100%;
+    height: 100%;
+    border-radius: 11px;
   }
 }
 
