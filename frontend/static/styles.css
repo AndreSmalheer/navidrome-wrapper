@@ -1,48 +1,339 @@
-.song_card {
-  font-family: Arial, sans-serif;
-  background: #1e1e2f; /* dark card background */
-  color: #f0f0f0;
-  padding: 15px 20px;
-  margin: 10px 0;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s, box-shadow 0.2s;
-  max-width: 400px;
+@import url("https://fonts.googleapis.com/css2?family=Lilita+One&display=swap");
+
+@media (min-width: 451px) {
+  body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: #242323;
+  }
+  #side-bar {
+    background-color: #323232;
+    height: 100%;
+    width: 119px;
+    border-radius: 0 27px 27px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  #main-container {
+    width: calc(100% - 119px);
+    height: 100%;
+    padding-left: 1vw;
+  }
+
+  #top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 3vw;
+    padding-top: 1vh;
+  }
+
+  #audio-player-view {
+    height: clamp(200px, 80%, 318px);
+    width: clamp(30px, 3vh, 33px);
+    border-radius: 11px;
+    background-color: #3e3e3e;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 12px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  #audio-player-view #song-cover {
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    background-color: wheat;
+  }
+
+  #audio-player-view #song-header {
+    font-size: 10px;
+    padding-top: 15px;
+    color: #ffffff;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    letter-spacing: 0, 3em;
+  }
+
+  #view {
+    padding-left: calc(20px + clamp(3vw, 3vh, 33px));
+  }
+
+  #audio-feed-large {
+    height: 155px;
+    padding-bottom: 4vh;
+  }
+
+  #audio-feed-medium {
+    padding-bottom: 4vh;
+  }
+
+  #audio-feed-small {
+    height: 122px;
+    padding-bottom: 4vh;
+  }
+
+  #audio-feed-large .header,
+  #audio-feed-medium .header,
+  #audio-feed-small .header {
+    max-width: calc(100% - 2vh);
+    display: block;
+    margin-bottom: 1vh;
+    font-size: 20px;
+    color: #ffffff;
+    font-family: "Lilita One", sans-serif;
+  }
+
+  .song-feed {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 10px;
+    -ms-overflow-style: none;
+  }
+
+  #audio-feed-large .song-feed {
+    margin-left: 1vw;
+    display: flex;
+    gap: 10px;
+  }
+
+  #audio-feed-medium .song-feed {
+    margin-left: 1vw;
+    display: flex;
+    gap: 10px;
+  }
+
+  #audio-feed-small .song-feed {
+    margin-left: 1vw;
+    display: flex;
+    gap: 10px;
+  }
+
+  .song-feed .song {
+    border-radius: 11px;
+    flex: 0 0 auto;
+  }
+
+  .song {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  }
+
+  #audio-feed-large .song-feed .song {
+    width: 140px;
+    height: 140px;
+  }
+
+  #audio-feed-medium .song-feed .song {
+    width: 130px;
+    height: 130px;
+  }
+
+  #audio-feed-small .song-feed .song {
+    width: 120px;
+    height: 120px;
+  }
+
+  #settings-btn {
+    display: inline-block; /* ensures transform works */
+  }
+
+  #settings-btn :hover {
+    cursor: pointer;
+    animation: spin 0.3s ease forwards;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .side-bar-btn:hover {
+    cursor: pointer;
+    scale: 1.1;
+  }
+
+  .song_backround_img {
+    width: 100%;
+    height: 100%;
+    border-radius: 11px;
+  }
 }
 
-.song_card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
-}
+@media (max-width: 450px) {
+  body {
+    background-color: #242323;
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+  }
 
-.song_card p {
-  margin: 6px 0;
-  line-height: 1.4;
-}
+  #top-bar {
+    /* width: 100%; */
+    height: 8vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4vh;
+  }
 
-.song_card .song_title {
-  font-weight: bold;
-  font-size: 1.2em;
-}
-.song_card .artist {
-  color: #ffcc00;
-}
-.song_card .song_album {
-  color: #66ccff;
-  font-style: italic;
-}
-.song_card .song_id,
-.song_card .song_size,
-.song_card .song_play_count {
-  color: #ccc;
-}
-.song_card .song_created,
-.song_card .song_last_played {
-  color: #aaa;
-  font-size: 0.9em;
-}
-.song_card .song_url {
-  color: #00aaff;
-  text-decoration: underline;
-  cursor: pointer;
+  #settings-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    margin-right: 3vw;
+  }
+
+  #side-bar {
+    width: 100%;
+    height: 17vh;
+    background-color: #323232;
+    border-radius: 27px 27px 0 0;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5vw;
+  }
+
+  .side-bar-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(40px, 5vw, 47px);
+    height: clamp(40px, 5vw, 47px);
+  }
+
+  .side-bar-btn img {
+    width: 100%;
+    height: 100%;
+  }
+
+  #audio-feed-large {
+    height: 155px;
+    padding-left: 2vw;
+  }
+
+  #audio-feed-medium {
+    padding-left: 2vw;
+  }
+
+  #audio-feed-small {
+    height: 122px;
+    padding-left: 2vw;
+  }
+
+  #audio-feed-large .header,
+  #audio-feed-medium .header,
+  #audio-feed-small .header {
+    max-width: calc(100% - 2vh);
+    display: block;
+    margin-bottom: 1vh;
+    font-size: 20px;
+    color: #ffffff;
+    font-family: "Lilita One", sans-serif;
+  }
+
+  .song-feed {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 5px;
+    -ms-overflow-style: none;
+  }
+
+  #audio-feed-large .song-feed {
+    margin-left: 2vw;
+    display: flex;
+    gap: 10px;
+  }
+
+  #audio-feed-medium .song-feed {
+    margin-left: 2vw;
+    display: flex;
+    gap: 10px;
+  }
+
+  #audio-feed-small .song-feed {
+    margin-left: 2vw;
+    display: flex;
+    gap: 10px;
+  }
+
+  .song-feed .song {
+    border-radius: 11px;
+    flex: 0 0 auto;
+  }
+
+  .song {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    background-color: wheat;
+  }
+
+  #audio-feed-large .song-feed .song {
+    width: 124px;
+    height: 124px;
+  }
+
+  #audio-feed-medium .song-feed .song {
+    width: 99px;
+    height: 99px;
+  }
+
+  #audio-feed-small .song-feed .song {
+    width: 75px;
+    height: 75px;
+  }
+
+  #audio-player-view {
+    width: clamp(
+      200px,
+      80%,
+      318px
+    ); /* min 200px, preferred 80% of parent, max 318px */
+    height: clamp(
+      30px,
+      3vh,
+      33px
+    ); /* min 25px, preferred 3% of viewport height, max 33px */
+    border-radius: 11px;
+    background-color: #3e3e3e;
+    position: absolute;
+    bottom: calc(17vh + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+  }
+
+  #audio-player-view #song-cover {
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    background-color: wheat;
+  }
+
+  #audio-player-view #song-header {
+    font-size: 10px;
+    padding-left: 6px;
+    color: #ffffff;
+  }
 }

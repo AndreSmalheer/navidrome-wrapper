@@ -3,17 +3,90 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Navidrome Audio Test</title>
+    <title>Document</title>
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='styles.css') }}"
     />
   </head>
   <body>
-    <div id="song_cards_container"></div>
+    <div id="top-bar">
+      <div id="prev-btn"></div>
+      <div id="settings-btn">
+        <img src="{{ url_for('static', filename='images/settings.svg') }}" />
+      </div>
+    </div>
 
-    <script src="{{ url_for('static', filename='player.js') }}"></script>
+    <div id="view">
+      <div id="audio-feed-large">
+        <div class="header">Recently Played</div>
+        <div class="song-feed"></div>
+      </div>
+
+      <!-- <div id="audio-feed-medium">
+        <div class="header">Recently Played</div>
+        <div class="song-feed">
+          <div class="song" onclick="album_details()"></div>
+          <div class="song" onclick="album_details()"></div>
+          <div class="song" onclick="album_details()"></div>
+          <div class="song" onclick="album_details()"></div>
+        </div>
+      </div>
+
+      <div id="audio-feed-small">
+        <div class="header">Recently Played</div>
+        <div class="song-feed">
+          <div class="song" onclick="album_details()"></div>
+          <div class="song" onclick="album_details()"></div>
+          <div class="song" onclick="album_details()"></div>
+          <div class="song" onclick="album_details()"></div>
+        </div>
+      </div> -->
+    </div>
+
+    <div id="audio-player-view">
+      <div id="song-cover"></div>
+      <div id="song-header">Song Name</div>
+    </div>
+
+    <div id="side-bar">
+      <div
+        class="side-bar-btn"
+        id="home-btn"
+        onclick="handle_side_bar_btn_click(this)"
+      >
+        <img
+          src="{{ url_for('static', filename='images/house-chimney.svg') }}"
+        />
+      </div>
+
+      <div
+        class="side-bar-btn"
+        id="search-btn"
+        onclick="handle_side_bar_btn_click(this)"
+      >
+        <img src="{{ url_for('static', filename='images/search.svg') }}" />
+      </div>
+
+      <div
+        class="side-bar-btn"
+        id="fav-btn"
+        onclick="handle_side_bar_btn_click(this)"
+      >
+        <img src="{{ url_for('static', filename='images/heart.svg') }}" />
+      </div>
+
+      <div
+        class="side-bar-btn"
+        id="radio-btn"
+        onclick="handle_side_bar_btn_click(this)"
+      >
+        <img src="{{ url_for('static', filename='images/radio.svg') }}" />
+      </div>
+    </div>
+
     <script src="{{ url_for('static', filename='config.js') }}"></script>
-    <script src="{{ url_for('static', filename='main.js') }}"></script>
+    <script src="{{ url_for('static', filename='view.js') }}"></script>
+    <script src="{{ url_for('static', filename='navidrome.js') }}"></script>
   </body>
 </html>
