@@ -29,7 +29,6 @@ function handle_side_bar_btn_click(button) {
     current_view = buttonViews[btn_id];
   }
 }
-
 //view functions
 async function home_view() {
   if (songsArray.length === 0) {
@@ -39,6 +38,12 @@ async function home_view() {
   songsArray.forEach((song) => {
     populate_music_grid_single(song, "audio-feed-large");
   });
+}
+
+function album_details_view() {
+  prev_btn = document.getElementById("prev-btn");
+
+  prev_btn.style.opacity = "1";
 }
 
 function clear_view() {

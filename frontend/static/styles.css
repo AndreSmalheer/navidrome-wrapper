@@ -123,10 +123,16 @@
   .song-feed .song {
     border-radius: 11px;
     flex: 0 0 auto;
+    overflow: hidden;
   }
 
   .song {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+  }
+
+  .song:hover {
+    scale: 1.05;
   }
 
   #audio-feed-large .song-feed .song {
@@ -198,6 +204,10 @@
     width: 35px;
     height: 35px;
     margin-right: 3vw;
+  }
+
+  #prev-btn {
+    opacity: 0;
   }
 
   #side-bar {
@@ -283,7 +293,12 @@
 
   .song {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-    background-color: wheat;
+  }
+
+  .song_backround_img {
+    width: 100%;
+    height: 100%;
+    border-radius: 11px;
   }
 
   #audio-feed-large .song-feed .song {

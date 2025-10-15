@@ -11,17 +11,19 @@
   </head>
   <body>
     <div id="top-bar">
-      <div id="prev-btn"></div>
+      <div id="prev-btn">
+        <img src="{{ url_for('static', filename='images/back_btn.svg') }}" />
+      </div>
       <div id="settings-btn">
         <img src="{{ url_for('static', filename='images/settings.svg') }}" />
       </div>
     </div>
 
     <div id="view">
-      <div id="audio-feed-large">
+      <!-- <div id="audio-feed-large">
         <div class="header">Recently Played</div>
         <div class="song-feed"></div>
-      </div>
+      </div> -->
 
       <!-- <div id="audio-feed-medium">
         <div class="header">Recently Played</div>

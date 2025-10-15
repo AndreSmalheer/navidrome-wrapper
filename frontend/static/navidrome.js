@@ -24,4 +24,6 @@ async function listAllSongs(album_id) {
   });
 }
 
-home_view();
+// home_view();
+
+album_details_view();
