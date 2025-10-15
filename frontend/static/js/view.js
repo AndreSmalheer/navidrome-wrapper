@@ -32,7 +32,7 @@ function handle_side_bar_btn_click(button) {
 //view functions
 async function home_view() {
   if (songsArray.length === 0) {
-    await listAllSongs("json&id=69IwB2p7tQDejD3lowUIFo");
+    await listAllSongs(defaultAlbum);
   }
 
   songsArray.forEach((song) => {
