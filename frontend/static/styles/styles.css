@@ -227,8 +227,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: clamp(40px, 5vw, 47px);
-    height: clamp(40px, 5vw, 47px);
+    width: clamp(60px, 5vw, 47px);
+    height: clamp(60px, 5vw, 47px);
   }
 
   .side-bar-btn img {
