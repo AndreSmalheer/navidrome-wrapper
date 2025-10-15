@@ -12,10 +12,16 @@
   <body>
     <div id="top-bar">
       <div id="prev-btn">
-        <img src="{{ url_for('static', filename='images/back_btn.svg') }}" />
+        <img
+          alt="back"
+          src="{{ url_for('static', filename='images/back_btn.svg') }}"
+        />
       </div>
       <div id="settings-btn">
-        <img src="{{ url_for('static', filename='images/settings.svg') }}" />
+        <img
+          alt="settings"
+          src="{{ url_for('static', filename='images/settings.svg') }}"
+        />
       </div>
     </div>
 
@@ -58,6 +64,7 @@
         onclick="handle_side_bar_btn_click(this)"
       >
         <img
+          alt="home"
           src="{{ url_for('static', filename='images/house-chimney.svg') }}"
         />
       </div>
@@ -67,7 +74,10 @@
         id="search-btn"
         onclick="handle_side_bar_btn_click(this)"
       >
-        <img src="{{ url_for('static', filename='images/search.svg') }}" />
+        <img
+          alt="search"
+          src="{{ url_for('static', filename='images/search.svg') }}"
+        />
       </div>
 
       <div
@@ -75,7 +85,10 @@
         id="fav-btn"
         onclick="handle_side_bar_btn_click(this)"
       >
-        <img src="{{ url_for('static', filename='images/heart.svg') }}" />
+        <img
+          alt="favroute"
+          src="{{ url_for('static', filename='images/heart.svg') }}"
+        />
       </div>
 
       <div
@@ -83,7 +96,10 @@
         id="radio-btn"
         onclick="handle_side_bar_btn_click(this)"
       >
-        <img src="{{ url_for('static', filename='images/radio.svg') }}" />
+        <img
+          alt="radio"
+          src="{{ url_for('static', filename='images/radio.svg') }}"
+        />
       </div>
     </div>
 
